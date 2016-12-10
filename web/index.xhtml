@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Porównanie notowań kursów walut EBC i NBP</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Porównanie kursów walut NBP i Europejskiego Banku Centralnego 
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Angelika Osińska (164179), Marek Osiński (164165)
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="250" header="Menu" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Zasoby">
+                            <p:menuitem value="Strona EBC" url="https://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html"/>
+                            <p:menuitem value="Strona NBP" url="http://www.nbp.pl/Kursy/KursyA.html" />                            
+                        </p:submenu>
+                    </p:menu>
+                    
+                    <br/>
+                    <br/>
+                    Tabela NBP:
+                    <br/>
+                    <h:outputText id="tabelanbp" value="#{dtXratesTableView.tabelaNBP}" />
+                    <br/>
+                    Data notowania:
+                    <br/>
+                    <h:outputText id="exdate" value="#{dtXratesTableView.exDate}" />
+                    <br/>
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <p:dataTable var="xrate" value="#{dtXratesTableView.xrates}" rows="50"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,25,50">
+                            <p:column headerText="Waluta">
+                                <h:outputText value="#{xrate.currency}" />
+                            </p:column>
+
+                            <p:column headerText="Kod waluty" style="text-align: center">
+                                <h:outputText value="#{xrate.code}" />
+                            </p:column>
+
+                            <p:column headerText="Kurs NBP" style="text-align: right">
+                                <h:outputText value="#{xrate.nbp}"/>
+                            </p:column>
+
+                            <p:column headerText="Kurs ECB" style="text-align: right">
+                                <h:outputText value="#{xrate.ecb}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
