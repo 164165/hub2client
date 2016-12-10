@@ -35,7 +35,7 @@ public class HubClient {
                 XchangeRates output = response.getEntity(XchangeRates.class);
                 xchangeService.setRates(output);
             } else {
-                System.out.println("Error..!");
+                System.out.println("Client Client Error..!");
             }
 
         } catch (Exception e) {
