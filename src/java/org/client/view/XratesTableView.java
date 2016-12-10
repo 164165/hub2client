@@ -9,7 +9,7 @@ package org.client.view;
  *
  * @author marek
  */
-import hub.client.beans.XratesService;
+import org.client.beans.XratesService;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
